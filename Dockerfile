@@ -5,6 +5,7 @@ MAINTAINER James R. Barlow <jim@purplerock.ca>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   software-properties-common python-software-properties \
+    build-essential \
     xvfb \
     git wget python-virtualenv python-numpy python-scipy netpbm \
     python-pyqt5 ghostscript libffi-dev libjpeg-turbo-progs \
