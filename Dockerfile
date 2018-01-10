@@ -5,7 +5,7 @@ MAINTAINER James R. Barlow <jim@purplerock.ca>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   software-properties-common python-software-properties \
-  build-essential \
+  build-essential python-dev python3-dev \
   python3-wheel \
   python3-reportlab \
   python3-venv \
