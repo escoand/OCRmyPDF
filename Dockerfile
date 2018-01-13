@@ -30,6 +30,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   tesseract-ocr-deu
 
 ENV LANG=C.UTF-8
+ENV USERID=999
+ENV GROUPID=999
 
 RUN python3 -m venv --system-site-packages /appenv
 
@@ -53,7 +55,7 @@ RUN rm -rf /tmp/* /var/tmp/* /root/* /application/ocrmypdf \
   && apt-get autoremove -y \
   && apt-get autoclean -y
 
-RUN useradd docker \
+RUN useradd -u $USERID -g $GROUPID docker \
   && mkdir /home/docker
 
 USER docker
