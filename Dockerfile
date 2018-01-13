@@ -30,6 +30,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   tesseract-ocr-deu
 
 ENV LANG=C.UTF-8
+ENV UID=docker
+ENV GID=docker
 
 RUN python3 -m venv --system-site-packages /appenv
 
@@ -57,7 +59,7 @@ RUN useradd docker \
   && mkdir /home/docker \
   && chown docker:docker /home/docker
 
-USER docker
+USER $UID:$GID
 WORKDIR /home/docker
 
 # Must use array form of ENTRYPOINT
