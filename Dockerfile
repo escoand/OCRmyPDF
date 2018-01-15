@@ -3,6 +3,9 @@
 FROM      ubuntu:17.04
 MAINTAINER James R. Barlow <jim@purplerock.ca>
 
+ARGS USERID=999
+ARGS GROUPID=999
+
 RUN useradd -g users -m -d /home/docker docker \
   && usermod -u $USERID docker \
   && groupmod -g $GROUPID users
