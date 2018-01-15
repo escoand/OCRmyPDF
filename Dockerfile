@@ -53,7 +53,9 @@ RUN rm -rf /tmp/* /var/tmp/* /root/* /application/ocrmypdf \
   && apt-get autoremove -y \
   && apt-get autoclean -y
 
-RUN useradd -D -g users -m -d /home/docker docker
+RUN useradd -D -g users -m -d /home/docker docker \
+  && usermod -u $USERID -o docker \
+  && groupmod -g $GROUPID -o users
 
 USER docker
 WORKDIR /home/docker
