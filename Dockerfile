@@ -3,6 +3,10 @@
 FROM      ubuntu:17.04
 MAINTAINER James R. Barlow <jim@purplerock.ca>
 
+RUN useradd -D -g users -m -d /home/docker docker \
+  && usermod -u $USERID -o docker \
+  && groupmod -g $GROUPID -o users
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
   software-properties-common python-software-properties \
     build-essential \
@@ -52,10 +56,6 @@ RUN . /appenv/bin/activate; \
 RUN rm -rf /tmp/* /var/tmp/* /root/* /application/ocrmypdf \
   && apt-get autoremove -y \
   && apt-get autoclean -y
-
-RUN useradd -D -g users -m -d /home/docker docker \
-  && usermod -u $USERID -o docker \
-  && groupmod -g $GROUPID -o users
 
 USER docker
 WORKDIR /home/docker
