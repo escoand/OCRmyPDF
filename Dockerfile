@@ -3,13 +3,6 @@
 FROM      ubuntu:17.04
 MAINTAINER James R. Barlow <jim@purplerock.ca>
 
-ARG USERID=999
-ARG GROUPID=999
-
-RUN useradd -g users -m -d /home/docker docker \
-  && usermod -u $USERID docker \
-  && groupmod -g $GROUPID users
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
   software-properties-common python-software-properties \
     build-essential \
@@ -60,8 +53,7 @@ RUN rm -rf /tmp/* /var/tmp/* /root/* /application/ocrmypdf \
   && apt-get autoremove -y \
   && apt-get autoclean -y
 
-USER docker
-WORKDIR /home/docker
+RUN useradd -m -d /home/docker docker
 
 # Must use array form of ENTRYPOINT
 # Non-array form does not append other arguments, because that is "intuitive"
