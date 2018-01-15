@@ -4,8 +4,8 @@ FROM      ubuntu:17.04
 MAINTAINER James R. Barlow <jim@purplerock.ca>
 
 RUN useradd -g users -m -d /home/docker docker \
-  && usermod -u $USERID -o docker \
-  && groupmod -g $GROUPID -o users
+  && usermod -u $USERID docker \
+  && groupmod -g $GROUPID users
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   software-properties-common python-software-properties \
