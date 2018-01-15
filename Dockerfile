@@ -3,7 +3,7 @@
 FROM      ubuntu:17.04
 MAINTAINER James R. Barlow <jim@purplerock.ca>
 
-RUN useradd -D -g users -m -d /home/docker docker \
+RUN useradd -g users -m -d /home/docker docker \
   && usermod -u $USERID -o docker \
   && groupmod -g $GROUPID -o users
 
